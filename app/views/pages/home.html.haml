@@ -1,1 +1,20 @@
-This is home after login.
+.container
+  .col-md-12
+    %table{ role: 'datatable' }
+      %thead
+        %tr
+          %th Account Name
+          %th Account Code
+          %th Account Description
+          %th Debit
+          %th Credit
+      
+      %tbody
+        - @accounts.each do |account|
+          %tr
+            %td= account.name
+            %td= account.code
+            %td= account.description
+            %td= account.debit
+            %td= account.credit
+            -# %td= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' }

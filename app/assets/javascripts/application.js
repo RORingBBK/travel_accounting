@@ -11,7 +11,15 @@
 // about supported directives.
 //
 //= require jquery
+//= require datatables
 //= require bootstrap-sprockets
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+
+
+$(document).on('turbolinks:load', function() {
+    $("table[role='datatable']").each(function() {
+        $(this).DataTable({});
+    });
+})
