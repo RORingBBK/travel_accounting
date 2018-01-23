@@ -1,0 +1,76 @@
+.navbar.navbar-default.navbar-fixed-top{:role => "navigation"}
+  .container
+    .navbar-header
+      %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      - if user_signed_in?
+        %a.navbar-brand{:href => authenticated_root_path} Travel Accounting
+      - else
+        %a.navbar-brand{:href => unauthenticated_root_path} Travel Accounting
+    .collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        -# %li
+        -#   %a{:href => "#"} Inicio
+        -# %li.active
+        -#   %a{:href => "http://bootsnipp.com/snippets/featured/nav-account-manager", :target => "_blank"} Inspirado en este ejemplo
+        -# %li.dropdown
+        -#   %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+        -#     DropDown
+        -#     %span.caret
+        -#   %ul.dropdown-menu
+        -#     %li
+        -#       %a{:href => "#"} Link 2
+      %ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          %li.dropdown
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              %span.glyphicon.glyphicon-user>
+               
+              %strong= current_user.name
+              %span.glyphicon.glyphicon-chevron-down
+            %ul.dropdown-menu
+              %li
+                .navbar-login
+                  .row
+                    .col-lg-4
+                      %p.text-center
+                        %span.glyphicon.glyphicon-user.icon-size
+                    .col-lg-8
+                      %p.text-left
+                        %strong= current_user.name
+                      %p.text-left.small= current_user.email
+                      -# %p.text-left
+                      -#   %a.btn.btn-primary.btn-block.btn-sm{:href => edit_user_registration_path} My Account
+              %li.divider
+              %li
+                .navbar-login.navbar-login-session
+                  .row
+                    .col-lg-12
+                      %p
+                        -# %a.btn.btn-danger.btn-block{:href => destroy_user_session_path} Sign out
+                        = link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-danger btn-block'
+        - else
+          %li
+            = link_to 'Sign in', new_user_session_path
+
+:css
+  .navbar-login
+  {
+      width: 305px;
+      padding: 10px;
+      padding-bottom: 0px;
+  }
+
+  .navbar-login-session
+  {
+      padding: 10px;
+      padding-bottom: 0px;
+      padding-top: 0px;
+  }
+
+  .icon-size
+  {
+      font-size: 87px;
+  }
