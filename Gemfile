@@ -37,6 +37,13 @@ gem 'devise'
 gem 'haml'
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'jquery-rails'
+# Bootstrap
+gem 'less-rails-bootstrap'
+gem 'jquery-datatables-rails'
+# Inline edit
+gem 'bootstrap-editable-rails'
+# See https://github.com/sstephenson/execjs#readme for more supported runtimes
+gem 'therubyracer', platforms: :ruby
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
