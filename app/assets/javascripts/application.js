@@ -14,4 +14,7 @@
 //= require bootstrap-sprockets
 //= require rails-ujs
 //= require turbolinks
+// require bootstrap-editable
+// require bootstrap-editable-rails
+//= require dataTables/jquery.dataTables
 //= require_tree .

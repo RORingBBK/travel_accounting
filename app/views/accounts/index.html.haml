@@ -1,20 +1,28 @@
 .row
 	.col-xs-12
-		.box.box-primary
+		.box
 			.box-body
-				.table-responsive.mailbox-messages
-					.table#account-table.table.table-hover.table-striped
-						%thead
-							%tr
-								%th Id
-								%th Code
+				%table#account-table.table.table-hover.table-striped
+					%thead
+						%tr
+							%th Id
+							%th Code
+						
+							%th Name
+							%th Description
+							%th Debit
+							%th Credit
 							
-								%th Name
-								%th Description
-								%th Debit
-								%th Credit
+					%tbody
+						- @accounts.each do |a|
+							%tr 
+								%td= a.id
+								%td= a.code
+								%td= a.name
+								%td= a.description
+								%td= a.debit
+								%td= a.credit
 								
-						%tbody
-							- @accounts.each do |d|
-								%tr id="#{d.id}"
+								
+
                    

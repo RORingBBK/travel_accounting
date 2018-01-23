@@ -1,5 +1,7 @@
 /*
- *= require_self
+	*= require twitter/bootstrap
+	*= require dataTables/jquery.dataTables 
+  *= require_self
 */
 @import "bootstrap-sprockets";
 @import "bootstrap";
