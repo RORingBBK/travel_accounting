@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     authenticated :user do
-      root 'pages#home', as: :authenticated_root
+      root 'accounts#index', as: :authenticated_root
     end
     resources :accounts
 
