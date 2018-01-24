@@ -7,5 +7,5 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 100.times do |a|
-  Account.create(code: "#{a}code", name: "Account-#{a}", description: "This is #{a}", debit: "#{a}", credit: "#{b}")
+  Account.create(code: "#{a}code", name: "Account-#{a}", description: "This is #{a}", debit: "#{a}", credit: "#{a}")
 end
