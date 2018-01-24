@@ -11,6 +11,8 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.purr
+//= require best_in_place
 //= require bootstrap-sprockets
 //= require rails-ujs
 //= require turbolinks

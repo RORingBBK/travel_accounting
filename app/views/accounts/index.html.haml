@@ -18,11 +18,11 @@
 							- @accounts.each do |a|
 								%tr 
 									%td= a.id
-									%td= a.code
-									%td= a.name
-									%td= a.description
-									%td= a.debit
-									%td= a.credit
+									%td= best_in_place a, :code
+									%td= best_in_place a, :name
+									%td= best_in_place a, :description
+									%td= best_in_place a, :debit
+									%td= best_in_place a, :credit
 								
 								
 
