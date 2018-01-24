@@ -44,6 +44,9 @@ GEM
     autoprefixer-rails (7.1.6)
       execjs
     bcrypt (3.1.11)
+    best_in_place (3.1.1)
+      actionpack (>= 3.2)
+      railties (>= 3.2)
     bindex (0.5.0)
     bootstrap-editable-rails (0.0.9)
       railties (>= 3.1)
@@ -228,6 +231,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  best_in_place
   bootstrap-editable-rails
   bootstrap-sass (~> 3.3.7)
   byebug
