@@ -11,14 +11,9 @@ $(document).ready ->
     
       next_id = $(this).closest('td').next('td').find('span:first').attr('id')
       $('#' + next_id).click()
-
-      credit = parseInt($('#best_in_place_account_' + account_id + '_credit').text() || $('#best_in_place_account_' + account_id + '_credit')[0].dataset.bipOriginalContent)
-      #add two 00's with decimal
-      # $('#best_in_place_account_' + account_id + '_credit').text(credit.toFixed(2))
-      
       debit = parseInt($('#best_in_place_account_' + account_id + '_debit').text() || $('#best_in_place_account_' + account_id + '_debit')[0].dataset.bipOriginalContent)
-      #add two 00's with decimal
       # $('#best_in_place_account_' + account_id + '_debit').text(debit.toFixed(2))
+      credit = parseInt($('#best_in_place_account_' + account_id + '_credit').text() || $(this).find('span:first').attr("data-bip-original-content"))
 
       #check if the debit value is a positive integer 
 
