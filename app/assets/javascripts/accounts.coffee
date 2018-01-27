@@ -7,7 +7,7 @@ $(document).ready ->
     account_id = ($(this).find('span:first').attr('id')).split('_')[4]
     # account_cell_name = ($(this).find('span:first').attr('id')).split('_')[5]
 
-    if e.which == 13 
+    if e.which == 13
     
       next_id = $(this).closest('td').next('td').find('span:first').attr('id')
       $('#' + next_id).click()

@@ -1,33 +1,75 @@
+= stylesheet_link_tag "//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+
 .container
-	.row
-		.col-xs-12
-			.box
-				.box-body
-					%table#account-table.table.table-hover.table-striped
-						%thead
-							%tr
-								%th Id
-								%th Code
-							
-								%th Name
-								%th Description
-								%th Debit
-								%th Credit
-								%th Category
-								%th Total
-								
-						%tbody
-							- @accounts.each do |a|
-								%tr 
-									%td= a.id
-									%td= best_in_place a, :code
-									%td= best_in_place a, :name
-									%td= best_in_place a, :description
-									%td= best_in_place a, :debit, :display_as => :debit_precision
-									%td= best_in_place a, :credit, :display_as => :credit_precision
-									%td= best_in_place a, :category
+  .row
+    .col-xs-12
+      .box
+        .box-body
+          %table#account-table.table.table-hover.table-striped
+            %thead
+              %tr
+                %th Id
+                %th Code
 
-									%td{:id => "#{a.id}_total"}= (a.debit + a.credit)
-								
-								
+                %th Name
+                %th Description
+                %th Debit
+                %th Credit
+                %th Category
+                %th Total
 
+            %tbody
+              - @accounts.each do |a|
+                %tr
+                  %td= a.id
+                  %td
+                    .ui-widget
+                      -# = best_in_place a, :code, collection: { 'Ram': 'Ram', 'Shyam': 'Shyam' }, id: 'code', type: :select
+                      %select#code
+                        %option{value: 'Ram'} Ram
+                        %option{value: 'Shyam'} Shyam
+                        %option{value: 'Hari'} Hari
+                        %option{value: 'Geeta'} Geeta
+                        %option{value: 'Rita'} Rita
+                        %option{value: 'Sita'} Sita
+                        %option{value: 'Nita'} Nita
+                  -# %td= best_in_place a, :code
+                  %td= best_in_place a, :name
+                  %td= best_in_place a, :description
+                  %td= best_in_place a, :debit, :display_as => :debit_precision
+                  %td= best_in_place a, :credit, :display_as => :credit_precision
+                  %td= best_in_place a, :category
+
+                  %td{:id => "#{a.id}_total"}= (a.debit + a.credit)
+
+:javascript
+
+  $(document).ready(function() {
+    $( "select#code" ).combobox();
+
+    $('span.custom-combobox').keypress(function(e){
+      if(e.which == 13){
+        console.log('Enter pressed');
+        var selected_option = $('#code option:selected').text();
+        console.log(selected_option);
+       }
+    });
+  });
+
+:css
+
+  .custom-combobox {
+    position: relative;
+    display: inline-block;
+  }
+  .custom-combobox-toggle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin-left: -1px;
+    padding: 0;
+  }
+  .custom-combobox-input {
+    margin: 0;
+    padding: 5px 10px;
+  }
