@@ -6,6 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-100.times do |a|
+5.times do |a|
   Account.create(code: "#{a}code", name: "Account-#{a}", description: "This is #{a}", debit: "#{a}", credit: "#{a}")
 end
