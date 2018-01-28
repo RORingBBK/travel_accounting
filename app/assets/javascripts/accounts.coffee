@@ -31,7 +31,7 @@ $(document).ready ->
     stval = parseFloat($(this).text())
     creditTotal += if isNaN(stval) then 0 else stval
     return
-  tr.find('td span.credit').text(creditTotal.toFixed(2))
+  tr.find('td span.total-credit').text(creditTotal.toFixed(2))
 
   tr.show()
   $('table tbody').append(tr)
