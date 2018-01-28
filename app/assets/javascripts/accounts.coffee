@@ -1,6 +1,40 @@
 $(document).ready ->
   table = $('#account-table').DataTable()
   $('.best_in_place').best_in_place()
+  # debugger;
+  tr = $('table#account-table tr:last').clone(true, true)
+
+
+  tr.find('td.sorting_1').replaceWith("<td><b>Total</b></td>")
+  tr.find('td div.ui-widget').replaceWith("")
+  tr.find('td span.hell').replaceWith("")
+
+  tr.find('td span.debit').addClass("total-debit")
+  tr.find('td span.total-debit').removeClass("debit")
+
+  tr.find('td span.credit').addClass("total-credit")
+  tr.find('td span.total-credit').removeClass("credit")
+
+
+  tr.find('td:last').replaceWith("<td><td>")
+
+  debitTotal = 0
+  $('.debit').each ->
+    stval = parseFloat($(this).text())
+    debitTotal += if isNaN(stval) then 0 else stval
+    return
+  tr.find('td span.total-debit').text(debitTotal.toFixed(2))
+
+  creditTotal = 0
+  $('.credit').each ->
+    # debugger;
+    stval = parseFloat($(this).text())
+    creditTotal += if isNaN(stval) then 0 else stval
+    return
+  tr.find('td span.credit').text(creditTotal.toFixed(2))
+
+  tr.show()
+  $('table tbody').append(tr)
 
   $('#account-table tbody tr td').keypress (e) ->
 
@@ -27,6 +61,21 @@ $(document).ready ->
         
       total = debit + credit
       $('#' + account_id + '_total').text(total)
-    return
+      tr = $('table#account-table tr:last')
+
+      debitTotal = 0
+      $('.debit').each ->
+        stval = parseFloat($(this).text())
+        debitTotal += if isNaN(stval) then 0 else stval
+        return
+      tr.find('td span.total-debit').text(debitTotal.toFixed(2))
+
+      creditTotal = 0
+      $('.credit').each ->
+        stval = parseFloat($(this).text())
+        creditTotal += if isNaN(stval) then 0 else stval
+        return
+      tr.find('td span.total-credit').text(creditTotal.toFixed(2))
+
   return 
 

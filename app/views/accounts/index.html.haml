@@ -34,13 +34,13 @@
                         %option{value: 'Sita'} Sita
                         %option{value: 'Nita'} Nita
                   -# %td= best_in_place a, :code
-                  %td= best_in_place a, :name
-                  %td= best_in_place a, :description
-                  %td= best_in_place a, :debit, :display_as => :debit_precision
-                  %td= best_in_place a, :credit, :display_as => :credit_precision
-                  %td= best_in_place a, :category
+                  %td= best_in_place a, :name, :class => "hell"
+                  %td= best_in_place a, :description, :class => "hell"
+                  %td= best_in_place a, :debit, :display_as => :debit_precision, :class => "debit" 
+                  %td= best_in_place a, :credit, :display_as => :credit_precision, :class => "credit"
+                  %td= best_in_place a, :category, :class => "hell"
 
-                  %td{:id => "#{a.id}_total"}= (a.debit + a.credit)
+                  %td{:id => "#{a.id}_total", :class => "total"}= (a.debit + a.credit)
 
 :javascript
 
