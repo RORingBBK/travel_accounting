@@ -36,8 +36,8 @@
                   -# %td= best_in_place a, :code
                   %td= best_in_place a, :name, :class => "hell"
                   %td= best_in_place a, :description, :class => "hell"
-                  %td= best_in_place a, :debit, :display_as => :debit_precision, :class => "debit" 
-                  %td= best_in_place a, :credit, :display_as => :credit_precision, :class => "credit"
+                  %td= best_in_place a, :debit, :display_as => :debit_precision, :class => "debit debit-credit" 
+                  %td= best_in_place a, :credit, :display_as => :credit_precision, :class => "credit debit-credit"
                   %td= best_in_place a, :category, :class => "hell"
 
                   %td{:id => "#{a.id}_total", :class => "total"}= (a.debit + a.credit)
@@ -54,6 +54,27 @@
         console.log(selected_option);
        }
     });
+
+    $('.debit-credit').on('change', function() {
+      console.log('Clicked here');
+      var row_id = $(this).data('bip-url').split('/').pop();
+      
+      // console.log(row_id);
+      if(row_id){
+        var credit_value = $("#best_in_place_account_" + row_id + "_credit").data('bip-value');
+        var debit_value = $("#best_in_place_account_" + row_id + "_debit").data('bip-value');
+
+        console.log("Credit-val " + credit_value)
+        console.log("Debit-val " + debit_value)
+        
+        if(debit_value > 0){
+          $("#best_in_place_account_" + row_id + "_credit").attr("disabled", true);
+        } else if(credit_value > 0){
+          $("#best_in_place_account_" + row_id + "_debit").attr("disabled", true);
+        }
+      }
+
+    });
   });
 
 :css
@@ -62,6 +83,7 @@
     position: relative;
     display: inline-block;
   }
+  
   .custom-combobox-toggle {
     position: absolute;
     top: 0;
@@ -69,7 +91,13 @@
     margin-left: -1px;
     padding: 0;
   }
+  
   .custom-combobox-input {
     margin: 0;
     padding: 5px 10px;
+  }
+
+  .debit-credit.disabled{
+    opacity: .5;
+    pointer-events: none;
   }
