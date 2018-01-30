@@ -41,6 +41,7 @@
                   %td= best_in_place a, :category, :class => "hell"
 
                   %td{:id => "#{a.id}_total", :class => "total"}= (a.debit + a.credit)
+                  %div.hidden.account_information{data: {first: Account.first.id, last: Account.last.id}}
 
 :javascript
 
@@ -55,23 +56,46 @@
        }
     });
 
-    $('.debit-credit').on('change', function() {
+    var first_id = $('.account_information').data('first');
+    var last_id = $('.account_information').data('last');
+    
+    for (var n = first_id; n <= last_id; n++){
+      console.log(n);
+      var deb = $("#best_in_place_account_" + n + "_debit").text();
+      var cre = $("#best_in_place_account_" + n + "_credit").text();
+
+      if(deb !== "0.00"){
+        $("#best_in_place_account_" + n + "_credit").addClass("disable");
+      }else if(cre !== "0.00"){
+        $("#best_in_place_account_" + n + "_debit").addClass("disable");
+      }
+    }
+
+    $('.debit-credit').on('change', function(e) {
       console.log('Clicked here');
       var row_id = $(this).data('bip-url').split('/').pop();
+      var target_name = e.target.name
       
       // console.log(row_id);
       if(row_id){
-        var credit_value = $("#best_in_place_account_" + row_id + "_credit").data('bip-value');
-        var debit_value = $("#best_in_place_account_" + row_id + "_debit").data('bip-value');
-
-        console.log("Credit-val " + credit_value)
-        console.log("Debit-val " + debit_value)
-        
-        if(debit_value > 0){
-          $("#best_in_place_account_" + row_id + "_credit").attr("disabled", true);
-        } else if(credit_value > 0){
-          $("#best_in_place_account_" + row_id + "_debit").attr("disabled", true);
+        if(target_name == 'credit'){
+          var credit_value = e.target.value;
+          //var debit_value = $("#best_in_place_account_" + row_id + "_debit").data('bip-value');
+          //$("#best_in_place_account_" + row_id + "_debit").attr("disabled", true);
+          $("#best_in_place_account_" + row_id + "_debit").addClass("disable");
+        }else if(target_name == 'debit'){
+          var debit_value = e.target.value;
+          //var credit_value = $("#best_in_place_account_" + row_id + "_credit").data('bip-value');
+          //$("#best_in_place_account_" + row_id + "_credit").attr("disabled", true);
+          $("#best_in_place_account_" + row_id + "_credit").addClass("disable");
         }
+
+        // console.log("Credit-val " + credit_value)
+        // console.log("Debit-val " + debit_value)
+        
+        //if(debit_value > 0){
+        //} else if(credit_value > 0){
+        //}
       }
 
     });
@@ -97,7 +121,7 @@
     padding: 5px 10px;
   }
 
-  .debit-credit.disabled{
+  .disable{
     opacity: .5;
     pointer-events: none;
   }
