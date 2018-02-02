@@ -7,5 +7,5 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 5.times do |a|
-  Account.create(code: "#{a}code", name: "Account-#{a}", description: "This is #{a}", debit: "0.00", credit: "0.00")
+  Account.create(code: "#{a}code", name: "Account-#{a}", description: "This is #{a}", debit: "", credit: "")
 end
