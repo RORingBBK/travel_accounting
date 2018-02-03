@@ -15,8 +15,8 @@
                 %th Description
                 %th Debit
                 %th Credit
-                %th Category
-                %th Total
+                / %th Category
+                / %th Total
 
             %tbody
               - @accounts.each do |a|
@@ -38,9 +38,9 @@
                   %td= best_in_place a, :description, :class => "hell"
                   %td= best_in_place a, :debit, :display_as => :debit_precision, :class => "debit debit-credit"
                   %td= best_in_place a, :credit, :display_as => :credit_precision, :class => "credit debit-credit"
-                  %td= best_in_place a, :category, :class => "hell"
+                  / %td= best_in_place a, :category, :class => "hell"
 
-                  %td{:id => "#{a.id}_total", :class => "total"}= (a.debit.to_i + a.credit.to_i)
+                  / %td{:id => "#{a.id}_total", :class => "total"}= (a.debit.to_i + a.credit.to_i)
                   %div.hidden.account_information{data: {first: Account.first.id, last: Account.last.id}}
 
 :javascript
@@ -72,7 +72,22 @@
     }
 
     $('.debit-credit').on('change', function(e) {
-      console.log('Clicked here');
+      var account_id = $(this).attr('id').split('_')[4]
+      console.log(account_id);
+      $.ajax({
+            
+        url : window.location.pathname + 'accounts/' + account_id ,
+        type : 'PATCH',
+        data : { account_id: account_id|,
+        success : function(data) {
+            console.log(data);
+        },
+        error : function(request,error) {
+            // log the error to the console
+            console.log(error);
+        }
+      });
+
       var row_id = $(this).data('bip-url').split('/').pop();
       var target_name = e.target.name
 

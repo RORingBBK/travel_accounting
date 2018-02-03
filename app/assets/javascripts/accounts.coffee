@@ -1,5 +1,6 @@
 $(document).ready ->
-  table = $('#account-table').DataTable()
+  table = $('#account-table').dataTable
+ 
   $('.best_in_place').best_in_place()
   # debugger;
   tr = $('table#account-table tr:last').clone(true, true)
@@ -16,7 +17,7 @@ $(document).ready ->
   tr.find('td span.total-credit').removeClass("credit")
 
 
-  tr.find('td:last').replaceWith("<td><td>")
+  # tr.find('td:last').replaceWith("<td><td>")
 
   debitTotal = 0
   $('.debit').each ->
@@ -42,6 +43,8 @@ $(document).ready ->
     # account_cell_name = ($(this).find('span:first').attr('id')).split('_')[5]
 
     if e.which == 13
+   
+
 
       next_id = $(this).closest('td').next('td').find('span:first').attr('id')
       $('#' + next_id).click()
@@ -72,7 +75,8 @@ $(document).ready ->
 
       creditTotal = 0
       $('.credit').each ->
-        stval = parseFloat($(this).text())
+        # debugger;
+        stval = parseFloat($(this).text() || $(this)["0"].dataset.bipValue)
         creditTotal += if isNaN(stval) then 0 else stval
         return
       tr.find('td span.total-credit').text(creditTotal.toFixed(2))
