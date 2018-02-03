@@ -1,6 +1,6 @@
 class AccountsController < ApplicationController
   before_action :authenticate_user!
-  
+
   respond_to :html, :json
   def index
     @accounts = Account.all
@@ -9,7 +9,7 @@ class AccountsController < ApplicationController
   def update
     @account = Account.find(params[:id])
     @account.update_attributes(account_params)
-    respond_with @account 
+    respond_with @account
   end
 
   private
@@ -17,5 +17,5 @@ class AccountsController < ApplicationController
   def account_params
     params.require(:account).permit(:code, :name, :description, :debit, :credit, :category)
   end
-  
+
 end
